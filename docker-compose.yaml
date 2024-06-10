@@ -1,0 +1,19 @@
+version: '3.6'
+services:
+    db_fingrind_default:
+      container_name: fingrind_db_default
+      image: postgres:15-alpine
+      ports:
+        - '5432:5432'
+      environment:
+        POSTGRES_USER: user
+        POSTGRES_PASSWORD: secret
+    
+    # db_fingrind_default_test:
+    #   container_name: fingrind_db_default_test
+    #   image: postgres:15-alpine
+    #   ports:
+    #     - '5433:5432'
+    #   environment:
+    #     POSTGRES_USER: user
+    #     POSTGRES_PASSWORD: secret

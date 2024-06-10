@@ -1,0 +1,2 @@
+-- Create "money_records" table
+CREATE TABLE "money_records" ("id" bigserial NOT NULL, "user_id" bigserial NOT NULL, "reference" character varying(80) NOT NULL, "status" character varying(80) NOT NULL, "amount" double precision NOT NULL, PRIMARY KEY ("id"), CONSTRAINT "unique_reference" UNIQUE ("reference"), CONSTRAINT "user_id" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON UPDATE NO ACTION ON DELETE CASCADE);

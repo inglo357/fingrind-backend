@@ -1,0 +1,6 @@
+-- Create "accounts" table
+CREATE TABLE "accounts" ("id" bigserial NOT NULL, "user_id" bigserial NOT NULL, "balance" money NOT NULL DEFAULT 0.00, "currency_id" bigserial NOT NULL, "created_at" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, "updated_at" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id"), CONSTRAINT "user_id" FOREIGN KEY ("user_id") REFERENCES "users" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION);
+-- Create "entries" table
+CREATE TABLE "entries" ("id" bigserial NOT NULL, "account_id" bigserial NOT NULL, "amount" money NOT NULL, "created_at" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id"), CONSTRAINT "account_id" FOREIGN KEY ("account_id") REFERENCES "accounts" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION);
+-- Create "transfers" table
+CREATE TABLE "transfers" ("id" bigserial NOT NULL, "from_account_id" bigserial NOT NULL, "to_account_id" bigserial NOT NULL, "amount" money NOT NULL, "created_at" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id"), CONSTRAINT "from_account_id" FOREIGN KEY ("from_account_id") REFERENCES "accounts" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION, CONSTRAINT "to_account_id" FOREIGN KEY ("to_account_id") REFERENCES "accounts" ("id") ON UPDATE NO ACTION ON DELETE NO ACTION);
